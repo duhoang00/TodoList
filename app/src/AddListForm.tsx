@@ -1,25 +1,24 @@
 import { FunctionComponent, useState } from "react";
 
-type AddTodoFormProps = {
-  listID: number;
-  todo: Todo | null;
-  addTodo: (listID: number, content: string) => void;
+type AddListFormProps = {
+  name: string | null;
+  todos: [];
+  addList: (name: string) => void;
 };
 
-export const AddTodoForm: FunctionComponent<AddTodoFormProps> = ({
-  listID,
-  addTodo,
+export const AddListForm: FunctionComponent<AddListFormProps> = ({
+  addList,
 }) => {
-  const [content, setContent] = useState("");
+  const [name, setName] = useState("");
   return (
     <div className="mt-3">
       <form className="is-flex">
         <input
           className="input is-small"
           type="text"
-          value={content}
+          value={name}
           onChange={(e) => {
-            setContent(e.target.value);
+            setName(e.target.value);
           }}
         />
         <button
@@ -27,8 +26,8 @@ export const AddTodoForm: FunctionComponent<AddTodoFormProps> = ({
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            addTodo(listID, content);
-            setContent("");
+            addList(name);
+            setName("");
           }}
         >
           Add Todo

@@ -1,10 +1,11 @@
 interface Todo {
-    id: number,
-    content: string,
-    complete: boolean,
+  id: number;
+  content: string;
+  complete: boolean;
 }
 
 interface TodoList {
-    name:string, 
-    todos: Array<Todo>
+  id: number;
+  name: string;
+  todos: Array<Todo>;
 }
