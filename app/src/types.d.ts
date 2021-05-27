@@ -3,3 +3,8 @@ interface Todo {
     content: string,
     complete: boolean,
 }
+
+interface TodoList {
+    name:string, 
+    todos: Array<Todo>
+}

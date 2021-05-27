@@ -2,20 +2,9 @@ import { useState } from 'react';
 import { TodoList } from './TodoList'
 import { AddTodoForm } from "./AddTodoForm"
 
-let baseList = {
+let baseList:TodoList  = {
   name: "First list",
-  todos: [
-    {
-      id: 1,
-      content: "First task",
-      complete: false,
-    },
-    {
-      id: 2,
-      content: "Second task",
-      complete: false,
-    }
-  ]
+  todos: []
 }
 
 function App() {
@@ -36,9 +25,8 @@ function App() {
         })
       }
     })
+    
   }
-
-
 
   const addTodo = (content: string) => {
     const generateID = (): number => {
