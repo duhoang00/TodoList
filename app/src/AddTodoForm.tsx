@@ -18,6 +18,7 @@ export const AddTodoForm: FunctionComponent<AddTodoFormProps> = ({
           className="input is-small"
           type="text"
           value={content}
+          placeholder="Task name"
           onChange={(e) => {
             setContent(e.target.value);
           }}

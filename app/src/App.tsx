@@ -8,30 +8,7 @@ import { AddListForm } from "./AddListForm";
 //   todos: []
 // }
 
-let baseAllList: TodoList[] = [
-  {
-    id: 1,
-    name: "First List",
-    todos: [
-      {
-        id: 1,
-        content: "task 1",
-        complete: false,
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Second List",
-    todos: [
-      {
-        id: 1,
-        content: "task 1",
-        complete: false,
-      },
-    ],
-  },
-];
+let baseAllList: TodoList[] = [];
 
 function App() {
   const generateID = (): number => {
@@ -45,9 +22,7 @@ function App() {
 
   const addList = (name: string) => {
     const newList = { id: generateID(), name: name, todos: [] };
-    setAllLists((allLists) => {
-      return [...allLists, newList];
-    });
+    setAllLists((allLists) => [...allLists, newList]);
   };
 
   const addTodo = (listID: number, content: string) => {
@@ -108,6 +83,12 @@ function App() {
             </div>
           </div>
         ))}
+        <div className="column is-one-quarter">
+          <div className="box">
+            <div className="has-text-weight-bold">Add new list</div>
+            <AddListForm addList={addList} />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import { FunctionComponent, useState } from "react";
 
 type AddListFormProps = {
-  name: string | null;
-  todos: [];
+  //   listID: number;
+  //   name: string;
+  //   todos: [];
   addList: (name: string) => void;
 };
 
@@ -16,6 +17,7 @@ export const AddListForm: FunctionComponent<AddListFormProps> = ({
         <input
           className="input is-small"
           type="text"
+          placeholder="List name"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -30,7 +32,7 @@ export const AddListForm: FunctionComponent<AddListFormProps> = ({
             setName("");
           }}
         >
-          Add Todo
+          Add List
         </button>
       </form>
     </div>
