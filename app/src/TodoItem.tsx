@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { ValidateInput } from "./Validate";
 
 type TodoItemProps = {
   todo: Todo;
@@ -55,10 +56,10 @@ export const TodoItem: FunctionComponent<TodoItemProps> = ({
               onClick={(e) => {
                 if (editing) {
                   setEditing(false);
-                  if (newContent !== "") {
+                  if (ValidateInput(newContent)) {
                     editTodo(todo, newContent);
                   } else {
-                    window.alert("Do not make it empty, bro !?");
+                    window.alert("Wrong input");
                   }
                 } else {
                   setEditing(true);

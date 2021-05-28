@@ -2,6 +2,7 @@ import { FunctionComponent, useState } from "react";
 import { TodoItem } from "./TodoItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { ValidateInput } from "./Validate";
 
 type TodoListProps = {
   id: number;
@@ -51,10 +52,10 @@ export const TodoList: FunctionComponent<TodoListProps> = ({
               onClick={(e) => {
                 if (editing) {
                   setEditing(false);
-                  if (newName !== "") {
+                  if (ValidateInput(newName)) {
                     editList(id, newName);
                   } else {
-                    window.alert("Do not make it empty, bro !?");
+                    window.alert("Wrong input");
                   }
                 } else {
                   setEditing(true);

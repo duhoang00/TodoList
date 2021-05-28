@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from "react";
+import { ValidateInput } from "./Validate";
 
 type AddListFormProps = {
   addList: (name: string) => void;
@@ -25,10 +26,10 @@ export const AddListForm: FunctionComponent<AddListFormProps> = ({
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            if (name !== "") {
+            if (ValidateInput(name)) {
               addList(name);
             } else {
-              window.alert("List name can not be empty, bro !?");
+              window.alert("Wrong input");
             }
 
             setName("");

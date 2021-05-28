@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from "react";
+import { ValidateInput } from "./Validate";
 
 type AddTodoFormProps = {
   listID: number;
@@ -28,10 +29,10 @@ export const AddTodoForm: FunctionComponent<AddTodoFormProps> = ({
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            if (content !== "") {
+            if (ValidateInput(content)) {
               addTodo(listID, content);
             } else {
-              window.alert("Task can not be empty, bro !?");
+              window.alert("Wrong input");
             }
 
             setContent("");
