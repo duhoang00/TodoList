@@ -28,7 +28,12 @@ export const AddTodoForm: FunctionComponent<AddTodoFormProps> = ({
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            addTodo(listID, content);
+            if (content !== "") {
+              addTodo(listID, content);
+            } else {
+              window.alert("Task can not be empty, bro !?");
+            }
+
             setContent("");
           }}
         >

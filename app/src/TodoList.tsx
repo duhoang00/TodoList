@@ -51,7 +51,11 @@ export const TodoList: FunctionComponent<TodoListProps> = ({
               onClick={(e) => {
                 if (editing) {
                   setEditing(false);
-                  editList(id, newName);
+                  if (newName !== "") {
+                    editList(id, newName);
+                  } else {
+                    window.alert("Do not make it empty, bro !?");
+                  }
                 } else {
                   setEditing(true);
                 }

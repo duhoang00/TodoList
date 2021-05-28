@@ -55,7 +55,11 @@ export const TodoItem: FunctionComponent<TodoItemProps> = ({
               onClick={(e) => {
                 if (editing) {
                   setEditing(false);
-                  editTodo(todo, newContent);
+                  if (newContent !== "") {
+                    editTodo(todo, newContent);
+                  } else {
+                    window.alert("Do not make it empty, bro !?");
+                  }
                 } else {
                   setEditing(true);
                 }

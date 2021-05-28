@@ -25,7 +25,12 @@ export const AddListForm: FunctionComponent<AddListFormProps> = ({
           type="submit"
           onClick={(e) => {
             e.preventDefault();
-            addList(name);
+            if (name !== "") {
+              addList(name);
+            } else {
+              window.alert("List name can not be empty, bro !?");
+            }
+
             setName("");
           }}
         >
