@@ -3,19 +3,7 @@ import { TodoList } from "./TodoList";
 import { AddTodoForm } from "./AddTodoForm";
 import { AddListForm } from "./AddListForm";
 
-let baseAllList: TodoList[] = [
-  {
-    id: 1,
-    name: "FIRST LIST",
-    todos: [
-      {
-        id: 10,
-        content: "Task 1",
-        complete: false,
-      },
-    ],
-  },
-];
+let baseAllList: TodoList[] = [];
 
 function App() {
   const generateID = (): number => {
