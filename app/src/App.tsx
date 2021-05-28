@@ -2,13 +2,21 @@ import { useState } from "react";
 import { TodoList } from "./TodoList";
 import { AddTodoForm } from "./AddTodoForm";
 import { AddListForm } from "./AddListForm";
+import { access } from "fs";
 
-// let baseList: TodoList  = {
-//   name: "First list",
-//   todos: []
-// }
-
-let baseAllList: TodoList[] = [];
+let baseAllList: TodoList[] = [
+  {
+    id: 1,
+    name: "list 1",
+    todos: [
+      {
+        id: 10,
+        content: "task 1",
+        complete: false,
+      },
+    ],
+  },
+];
 
 function App() {
   const generateID = (): number => {
@@ -16,9 +24,6 @@ function App() {
   };
 
   const [allLists, setAllLists] = useState(baseAllList);
-  // const [list, setList] = useState(baseList);
-
-  console.log(allLists);
 
   const addList = (name: string) => {
     const newList = { id: generateID(), name: name, todos: [] };
@@ -62,9 +67,28 @@ function App() {
     );
   };
 
+  const deleteTodo = (listID: number, selectedTodo: Todo) => {
+    setAllLists(
+      allLists.map((list) => {
+        if (list.id === listID) {
+          return {
+            ...list,
+            todos: list.todos.reduce((arr: Todo[], todo) => {
+              if (todo.id !== selectedTodo.id) {
+                arr.push(todo);
+              }
+              return arr;
+            }, []),
+          };
+        }
+        return list;
+      })
+    );
+  };
+
   return (
-    <div className="container has-text-centered">
-      <div className="title">Todo List App</div>
+    <div className="container">
+      <div className="title has-text-centered">Todo List App</div>
       <div className="columns is-multiline is-variable is-8">
         {allLists.map((list) => (
           <div key={list.id} className="column is-one-quarter">
@@ -74,6 +98,7 @@ function App() {
                 todos={list.todos}
                 name={list.name}
                 toggleTodo={toggleTodo}
+                deleteTodo={deleteTodo}
               />
               <AddTodoForm
                 listID={list.id}
@@ -85,7 +110,9 @@ function App() {
         ))}
         <div className="column is-one-quarter">
           <div className="box">
-            <div className="has-text-weight-bold">Add new list</div>
+            <div className="has-text-weight-bold has-text-centered">
+              Add new list
+            </div>
             <AddListForm addList={addList} />
           </div>
         </div>

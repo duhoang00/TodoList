@@ -1,9 +1,6 @@
 import { FunctionComponent, useState } from "react";
 
 type AddListFormProps = {
-  //   listID: number;
-  //   name: string;
-  //   todos: [];
   addList: (name: string) => void;
 };
 

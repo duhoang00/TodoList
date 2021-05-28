@@ -6,6 +6,7 @@ type TodoListProps = {
   name: string;
   todos: Todo[];
   toggleTodo: (listID: number, todo: Todo) => void;
+  deleteTodo: (listID: number, todo: Todo) => void;
 };
 
 export const TodoList: FunctionComponent<TodoListProps> = ({
@@ -13,16 +14,18 @@ export const TodoList: FunctionComponent<TodoListProps> = ({
   name,
   todos,
   toggleTodo,
+  deleteTodo,
 }) => {
   return (
     <div>
-      <div className="has-text-weight-bold">{name}</div>
-      <div className="has-text-left">
+      <div className="has-text-weight-bold has-text-centered">{name}</div>
+      <div>
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}
             toggleTodo={(todo) => toggleTodo(id, todo)}
+            deleteTodo={(todo) => deleteTodo(id, todo)}
           />
         ))}
       </div>
