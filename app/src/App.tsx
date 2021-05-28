@@ -2,16 +2,15 @@ import { useState } from "react";
 import { TodoList } from "./TodoList";
 import { AddTodoForm } from "./AddTodoForm";
 import { AddListForm } from "./AddListForm";
-import { access } from "fs";
 
 let baseAllList: TodoList[] = [
   {
     id: 1,
-    name: "list 1",
+    name: "FIRST LIST",
     todos: [
       {
         id: 10,
-        content: "task 1",
+        content: "Task 1",
         complete: false,
       },
     ],
@@ -28,6 +27,28 @@ function App() {
   const addList = (name: string) => {
     const newList = { id: generateID(), name: name, todos: [] };
     setAllLists((allLists) => [...allLists, newList]);
+  };
+
+  const editList = (listID: number, newName: string) => {
+    setAllLists(
+      allLists.map((list) => {
+        if (list.id === listID) {
+          list.name = newName;
+        }
+        return list;
+      })
+    );
+  };
+
+  const deleteList = (listID: number) => {
+    setAllLists(
+      allLists.reduce((arr: TodoList[], list) => {
+        if (list.id !== listID) {
+          arr.push(list);
+        }
+        return arr;
+      }, [])
+    );
   };
 
   const addTodo = (listID: number, content: string) => {
@@ -86,6 +107,28 @@ function App() {
     );
   };
 
+  const editTodo = (listID: number, selectedTodo: Todo, newContent: string) => {
+    setAllLists(
+      allLists.map((list) => {
+        if (list.id === listID) {
+          return {
+            ...list,
+            todos: list.todos.map((todo) => {
+              if (todo.id === selectedTodo.id) {
+                return {
+                  ...todo,
+                  content: newContent,
+                };
+              }
+              return todo;
+            }),
+          };
+        }
+        return list;
+      })
+    );
+  };
+
   return (
     <div className="container">
       <div className="title has-text-centered">Todo List App</div>
@@ -99,6 +142,9 @@ function App() {
                 name={list.name}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo}
+                editTodo={editTodo}
+                editList={editList}
+                deleteList={deleteList}
               />
               <AddTodoForm
                 listID={list.id}

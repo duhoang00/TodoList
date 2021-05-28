@@ -2,3 +2,12 @@
   display: flex;
   justify-content: space-between;
 }
+
+.is-very-small {
+  font-size: 0.5rem;
+}
+
+.buttons button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
